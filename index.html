@@ -178,6 +178,7 @@
           <p>Genre: Hip-Hop</p>
         </div>
       </div>
+      <!-- Add more clubs as needed -->
     </div>
   </main>
 
@@ -188,27 +189,40 @@
   <div id="modal" class="modal">
     <div class="modal-content">
       <h2 id="modal-title">Club Name</h2>
-      <div id="modal-body">
-        <p><strong>Music Genre:</strong> </p>
-        <p><strong>Crowd Composition:</strong> </p>
-        <p><strong>Price:</strong></p>
-        <ul>
-          <li>Entry Fees: </li>
-          <li>Drinks: </li>
-        </ul>
-        <p><strong>Queue/Wait Time:</strong> </p>
-        <ul>
-          <li>Likelihood to Get In (Men-only groups): </li>
-          <li>Likelihood to Get In (Women-only groups): </li>
-          <li>Likelihood to Get In (Mixed groups): </li>
-        </ul>
-        <p><strong>Safety:</strong></p>
-        <ul>
-          <li>Venue Safety: </li>
-          <li>Neighborhood Safety: </li>
-        </ul>
-        <button class="modal-close" onclick="closeModal()">Close</button>
+      <p><strong>Music Genre:</strong> EDM</p>
+      <p><strong>Crowd Composition:</strong> Mixed, Age Range: 25-34</p>
+      <p><strong>Price:</strong></p>
+      <ul>
+        <li>Entry Fees: $$</li>
+        <li>Drinks: $$</li>
+      </ul>
+      <p><strong>Queue/Wait Time:</strong> Medium</p>
+      <ul>
+        <li>Likelihood to Get In (Men-only groups): Medium</li>
+        <li>Likelihood to Get In (Women-only groups): Easy</li>
+        <li>Likelihood to Get In (Mixed groups): Easy</li>
+      </ul>
+      <p><strong>Safety:</strong></p>
+      <ul>
+        <li>Venue Safety: Well-secured</li>
+        <li>Neighborhood Safety: Safe to walk at night</li>
+      </ul>
+      <button class="modal-close" onclick="closeModal()">Close</button>
     </div>
   </div>
-  </footer>
-</html></html>
+
+  <script>
+    function showModal(clubName) {
+      const modal = document.getElementById('modal');
+      const title = document.getElementById('modal-title');
+      title.textContent = clubName;
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('modal');
+      modal.classList.remove('active');
+    }
+  </script>
+</body>
+</html>
