@@ -188,9 +188,10 @@ footer {
       <label for="location">Filter by Location:</label>
       <select id="location">
         <option value="all">All</option>
-        <option value="new-york">New York</option>
-        <option value="los-angeles">London</option>
+        <option value="new york">New York</option> <!-- Match "New York" in card -->
+        <option value="london">London</option> <!-- Match "London" in card -->
       </select>
+
 
       <label for="genre">Filter by Genre:</label>
       <select id="genre">
@@ -264,26 +265,28 @@ footer {
 document.getElementById("genre").addEventListener("change", applyFilters);
 
 function applyFilters() {
-  const selectedLocation = document.getElementById("location").value.toLowerCase();
-  const selectedGenre = document.getElementById("genre").value.toLowerCase();
+  const selectedLocation = document.getElementById("location").value.toLowerCase().trim();
+  const selectedGenre = document.getElementById("genre").value.toLowerCase().trim();
 
   const cards = document.querySelectorAll(".club-card");
 
   cards.forEach(card => {
-    const location = card.querySelector(".basic-info p:nth-child(2)").textContent.split(": ")[1].toLowerCase();
-    const genre = card.querySelector(".basic-info p:nth-child(3)").textContent.split(": ")[1].toLowerCase();
+    // Normalize location and genre text from the cards
+    const location = card.querySelector(".basic-info p:nth-child(2)")?.textContent.split(": ")[1]?.toLowerCase().trim();
+    const genre = card.querySelector(".basic-info p:nth-child(3)")?.textContent.split(": ")[1]?.toLowerCase().trim();
 
     // Check if the card matches the selected filters
-    if (
-      (selectedLocation === "all" || location === selectedLocation) &&
-      (selectedGenre === "all" || genre === selectedGenre)
-    ) {
+    const matchesLocation = selectedLocation === "all" || location === selectedLocation;
+    const matchesGenre = selectedGenre === "all" || genre === selectedGenre;
+
+    if (matchesLocation && matchesGenre) {
       card.style.display = "block"; // Show card
     } else {
       card.style.display = "none"; // Hide card
     }
   });
 }
+
 
 
 
