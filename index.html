@@ -16,17 +16,24 @@ body {
 
 header {
   background: linear-gradient(90deg, #ff007f, #8a2be2); /* Neon gradient */
-  color: #fff;
-  padding: 0.3rem 0.3rem;
-  text-align: center;
-  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
 }
 
+.header-container {
+  display: flex; /* Flexbox for horizontal alignment */
+  align-items: center; /* Align logo and text vertically */
+  gap: 1rem; /* Add space between logo and text */
+}
 
 .logo {
-  width: 50px; /* Adjust size */
+  width: 50px; /* Adjust size of the logo */
   height: auto; /* Maintain aspect ratio */
-  border-radius: 50%; /* Optional: Make it circular */
+}
+
+h1 {
+  font-size: 1.5rem; /* Adjust the text size */
+  color: #fff; /* White text */
+  margin: 0; /* Remove default margins */
 }
 
 nav {
@@ -180,10 +187,10 @@ footer {
   </style>
 </head>
 <body>
-  <header>
+<header>
   <div class="header-container">
-    <img src="logo_pills.png" alt="Nightclub Logo" class="logo"> <!-- Add your logo file here -->
-    <h1>Nightclub Reviews</h1>
+    <img src="logo_pills.png" alt="Nightclub Logo" class="logo"> <!-- Logo on the left -->
+    <h1>Nightclub Reviews</h1> <!-- Text on the right -->
   </div>
 </header>
 
