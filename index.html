@@ -259,6 +259,35 @@ footer {
       const modal = document.getElementById('modal');
       modal.classList.remove('active');
     }
+
+    document.getElementById("location").addEventListener("change", applyFilters);
+document.getElementById("genre").addEventListener("change", applyFilters);
+
+function applyFilters() {
+  const selectedLocation = document.getElementById("location").value.toLowerCase();
+  const selectedGenre = document.getElementById("genre").value.toLowerCase();
+
+  const cards = document.querySelectorAll(".club-card");
+
+  cards.forEach(card => {
+    const location = card.querySelector(".basic-info p:nth-child(2)").textContent.split(": ")[1].toLowerCase();
+    const genre = card.querySelector(".basic-info p:nth-child(3)").textContent.split(": ")[1].toLowerCase();
+
+    // Check if the card matches the selected filters
+    if (
+      (selectedLocation === "all" || location === selectedLocation) &&
+      (selectedGenre === "all" || genre === selectedGenre)
+    ) {
+      card.style.display = "block"; // Show card
+    } else {
+      card.style.display = "none"; // Hide card
+    }
+  });
+}
+
+
+
+    
   </script>
 </body>
 </html>
