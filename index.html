@@ -269,31 +269,22 @@ function applyFilters() {
   const selectedGenre = document.getElementById("genre").value.toLowerCase().trim();
 
   const cards = document.querySelectorAll(".club-card");
-  let hasResults = false;
 
   cards.forEach(card => {
+    // Normalize location and genre text from the cards
     const location = card.querySelector(".basic-info p:nth-child(2)")?.textContent.split(": ")[1]?.toLowerCase().trim();
     const genre = card.querySelector(".basic-info p:nth-child(3)")?.textContent.split(": ")[1]?.toLowerCase().trim();
 
+    // Check if the card matches the selected filters
     const matchesLocation = selectedLocation === "all" || location === selectedLocation;
     const matchesGenre = selectedGenre === "all" || genre === selectedGenre;
 
     if (matchesLocation && matchesGenre) {
-      card.style.display = "block";
-      hasResults = true;
+      card.style.display = "block"; // Show card
     } else {
-      card.style.display = "none";
+      card.style.display = "none"; // Hide card
     }
   });
-
-  const placeholder = document.getElementById("no-results");
-  if (hasResults) {
-    placeholder.style.display = "none";
-  } else {
-    placeholder.style.display = "block";
-  }
-}
-
 }
 
 
