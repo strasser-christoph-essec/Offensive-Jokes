@@ -268,10 +268,11 @@ function applyFilters() {
   const selectedGenre = document.getElementById("genre").value.toLowerCase();
 
   const cards = document.querySelectorAll(".club-card");
+  let visibleCards = 0; // Track how many cards are visible
 
   cards.forEach(card => {
-    const location = card.querySelector(".basic-info p:nth-child(2)").textContent.split(": ")[1].toLowerCase();
-    const genre = card.querySelector(".basic-info p:nth-child(3)").textContent.split(": ")[1].toLowerCase();
+    const location = card.querySelector(".basic-info p:nth-child(2)").textContent.split(": ")[1]?.toLowerCase().trim();
+    const genre = card.querySelector(".basic-info p:nth-child(3)").textContent.split(": ")[1]?.toLowerCase().trim();
 
     // Check if the card matches the selected filters
     if (
@@ -279,10 +280,33 @@ function applyFilters() {
       (selectedGenre === "all" || genre === selectedGenre)
     ) {
       card.style.display = "block"; // Show card
+      visibleCards++; // Increment visible card count
     } else {
       card.style.display = "none"; // Hide card
     }
   });
+
+  // Display a "No Results Found" message if no cards match the filters
+  const clubContainer = document.querySelector(".club-container");
+  let noResultsMessage = document.getElementById("no-results");
+
+  if (visibleCards === 0) {
+    if (!noResultsMessage) {
+      noResultsMessage = document.createElement("p");
+      noResultsMessage.id = "no-results";
+      noResultsMessage.textContent = "No results found.";
+      noResultsMessage.style.color = "#ff007f"; // Neon pink for visibility
+      noResultsMessage.style.textAlign = "center";
+      noResultsMessage.style.marginTop = "1rem";
+      clubContainer.appendChild(noResultsMessage);
+    }
+  } else {
+    if (noResultsMessage) {
+      noResultsMessage.remove(); // Remove "No Results Found" message if cards are visible
+    }
+  }
+}
+
 }
 
 
