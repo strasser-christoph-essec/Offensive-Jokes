@@ -171,15 +171,18 @@
       const response = await fetch("https://sheetdb.io/api/v1/68ach2ahjqzur");
       const data = await response.json();
 
+      console.log("Fetched data:", data); // Debugging
+
       // Populate club details
       data.forEach(club => {
         clubDetails[club["Club Name"]] = club;
       });
 
-      // Generate club cards
+      // Generate club cards with images
       const container = document.getElementById("club-container");
       container.innerHTML = data.map(club => `
         <div class="club-card" onclick="showModal('${club["Club Name"]}')">
+          <img src="${club["Image URL"] || 'placeholder.jpg'}" alt="${club["Club Name"]}">
           <div class="basic-info">
             <p>${club["Club Name"]}</p>
             <p>Genre: ${club.Genre}</p>
@@ -195,9 +198,11 @@
   function showModal(clubName) {
     const modal = document.getElementById("modal");
     const details = clubDetails[clubName];
+
     if (details) {
       const modalContent = document.getElementById("modal-content");
       modalContent.innerHTML = `
+        <img src="${details["Image URL"] || 'placeholder.jpg'}" alt="${details["Club Name"]}" style="width:100%; border-radius:8px;">
         <h2>${details["Club Name"]}</h2>
         <p><strong>Music Genre:</strong> ${details.Genre}</p>
         <p><strong>Crowd Composition:</strong> ${details["Crowd Composition"]}</p>
@@ -223,5 +228,6 @@
   // Initialize
   fetchClubs();
 </script>
+
 </body>
 </html>
