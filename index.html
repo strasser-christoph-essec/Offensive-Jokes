@@ -173,34 +173,35 @@
 <script>
   let clubDetails = {};
 
-  async function fetchClubs() {
-    try {
-      const response = await fetch("https://sheetdb.io/api/v1/68ach2ahjqzur");
-      const data = await response.json();
+async function fetchClubs() {
+  try {
+    const response = await fetch("https://sheetdb.io/api/v1/68ach2ahjqzur");
+    const data = await response.json();
 
-      console.log("Fetched data:", data); // Debugging
+    console.log("Fetched data:", data); // Debugging
 
-      // Populate club details
-      data.forEach(club => {
-        clubDetails[club["Club Name"]] = club;
-      });
+    // Populate club details
+    data.forEach(club => {
+      clubDetails[club["Club Name"]] = club;
+    });
 
-      // Generate club cards
-      const container = document.getElementById("club-container");
-      container.innerHTML = data.map(club => `
-        <div class="club-card" onclick="showModal('${club["Club Name"]}')">
-          <img src="${club["Image URL"] || 'placeholder.jpg'}" alt="${club["Club Name"]}">
-          <div class="basic-info">
-            <p>${club["Club Name"]}</p>
-            <p>Genre: ${club.Genre}</p>
-            <p>Crowd: ${club["Crowd Composition"]}</p>
-          </div>
+    // Generate club cards
+    const container = document.getElementById("club-container");
+    container.innerHTML = data.map(club => `
+      <div class="club-card" onclick="showModal('${club["Club Name"]}')">
+        <img src="${club["Image URL"] || 'placeholder.jpg'}" alt="${club["Club Name"]}">
+        <div class="basic-info">
+          <p>${club["Club Name"]}</p>
+          <p>Genre: ${club.Genre}</p>
+          <p>Location: ${club["Location"]}</p>
         </div>
-      `).join('');
-    } catch (error) {
-      console.error("Error fetching club data:", error);
-    }
+      </div>
+    `).join('');
+  } catch (error) {
+    console.error("Error fetching club data:", error);
   }
+}
+
 
   function showModal(clubName) {
     const modal = document.getElementById("modal");
