@@ -73,8 +73,11 @@
     }
     .club-card img {
       width: 100%;
-      display: block;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
     }
+    /* Hide the info box by default */
     .club-card .basic-info {
       position: absolute;
       bottom: 0;
@@ -84,8 +87,12 @@
       color: #e0e0e0;
       padding: 1rem;
       text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+    /* Show the info box on hover */
+    .club-card:hover .basic-info {
       opacity: 1;
-      transition: opacity 0.3s;
     }
     footer {
       background: linear-gradient(90deg, #8a2be2, #ff007f);
@@ -178,7 +185,7 @@
         clubDetails[club["Club Name"]] = club;
       });
 
-      // Generate club cards with images
+      // Generate club cards
       const container = document.getElementById("club-container");
       container.innerHTML = data.map(club => `
         <div class="club-card" onclick="showModal('${club["Club Name"]}')">
