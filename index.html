@@ -13,31 +13,26 @@
       background-color: #121212;
       color: #e0e0e0;
     }
-
     header {
       background: linear-gradient(90deg, #ff007f, #8a2be2);
       padding: 0.5rem 1rem;
       display: flex;
       justify-content: center;
     }
-
     .header-container {
       display: flex;
       align-items: center;
       gap: 1rem;
     }
-
     .logo {
       width: 50px;
       height: auto;
     }
-
     h1 {
       font-size: 1.7rem;
       color: #fff;
       margin: 0;
     }
-
     nav {
       display: flex;
       justify-content: center;
@@ -46,28 +41,23 @@
       padding: 0.7rem;
       border-bottom: 2px solid #444;
     }
-
     nav a {
       color: #00a8e8;
       text-decoration: none;
       font-weight: bold;
       transition: color 0.3s;
     }
-
     nav a:hover {
       color: #ff007f;
     }
-
     main {
       padding: 2rem;
     }
-
     .club-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1.5rem;
     }
-
     .club-card {
       position: relative;
       border: 1px solid #444;
@@ -77,17 +67,14 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
       transition: transform 0.3s, box-shadow 0.3s;
     }
-
     .club-card:hover {
       transform: scale(1.05);
       box-shadow: 0 6px 15px rgba(255, 0, 127, 0.5);
     }
-
     .club-card img {
       width: 100%;
       display: block;
     }
-
     .club-card .basic-info {
       position: absolute;
       bottom: 0;
@@ -100,7 +87,6 @@
       opacity: 1;
       transition: opacity 0.3s;
     }
-
     footer {
       background: linear-gradient(90deg, #8a2be2, #ff007f);
       color: #fff;
@@ -108,7 +94,6 @@
       padding: 1.5rem;
       font-size: 0.9rem;
     }
-
     .modal {
       display: none;
       position: fixed;
@@ -120,11 +105,9 @@
       justify-content: center;
       align-items: center;
     }
-
     .modal.active {
       display: flex;
     }
-
     .modal-content {
       background: #1e1e1e;
       padding: 2rem;
@@ -135,7 +118,6 @@
       color: #e0e0e0;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
     }
-
     .modal-close {
       background: #ff007f;
       border: none;
@@ -146,7 +128,6 @@
       cursor: pointer;
       transition: background-color 0.3s;
     }
-
     .modal-close:hover {
       background: #8a2be2;
     }
@@ -199,11 +180,10 @@
       const container = document.getElementById("club-container");
       container.innerHTML = data.map(club => `
         <div class="club-card" onclick="showModal('${club["Club Name"]}')">
-          <img src="${club.Image || 'placeholder.jpg'}" alt="${club["Club Name"]}">
           <div class="basic-info">
             <p>${club["Club Name"]}</p>
             <p>Genre: ${club.Genre}</p>
-            <p>Location: ${club.Location || "Unknown"}</p>
+            <p>Crowd: ${club["Crowd Composition"]}</p>
           </div>
         </div>
       `).join('');
