@@ -155,10 +155,23 @@
 </nav>
 
 <main>
+  <div class="filter-bar">
+    <label for="location">Filter by Location:</label>
+    <select id="location" onchange="applyFilters()">
+      <option value="all">All</option>
+    </select>
+
+    <label for="genre">Filter by Genre:</label>
+    <select id="genre" onchange="applyFilters()">
+      <option value="all">All</option>
+    </select>
+  </div>
+
   <div class="club-container" id="club-container">
     <!-- Club cards will be dynamically generated here -->
   </div>
 </main>
+
 
 <footer>
   <p>&copy; 2025 Nightclub Reviews. All rights reserved.</p>
@@ -171,7 +184,8 @@
 </div>
 
 <script>
-  let clubDetails = {};
+let clubDetails = {};
+let allClubs = [];
 
 async function fetchClubs() {
   try {
@@ -180,60 +194,101 @@ async function fetchClubs() {
 
     console.log("Fetched data:", data); // Debugging
 
+    allClubs = data; // Store full data for filtering
+    clubDetails = {};
+
     // Populate club details
     data.forEach(club => {
       clubDetails[club["Club Name"]] = club;
     });
 
-    // Generate club cards
-    const container = document.getElementById("club-container");
-    container.innerHTML = data.map(club => `
-      <div class="club-card" onclick="showModal('${club["Club Name"]}')">
-        <img src="${club["Image URL"] || 'placeholder.jpg'}" alt="${club["Club Name"]}">
-        <div class="basic-info">
-          <p>${club["Club Name"]}</p>
-          <p>Genre: ${club.Genre}</p>
-          <p>Location: ${club["Location"]}</p>
-        </div>
-      </div>
-    `).join('');
+    // Populate filters dynamically
+    populateFilters(data);
+
+    // Display all clubs initially
+    displayClubs(data);
   } catch (error) {
     console.error("Error fetching club data:", error);
   }
 }
 
+function populateFilters(data) {
+  const locationSelect = document.getElementById("location");
+  const genreSelect = document.getElementById("genre");
 
-  function showModal(clubName) {
-    const modal = document.getElementById("modal");
-    const details = clubDetails[clubName];
+  // Get unique locations & genres
+  const locations = [...new Set(data.map(club => club["Location"]))];
+  const genres = [...new Set(data.map(club => club.Genre))];
 
-    if (details) {
-      const modalContent = document.getElementById("modal-content");
-      modalContent.innerHTML = `
-        <h2>${details["Club Name"]}</h2>
-        <p><strong>Music Genre:</strong> ${details.Genre}</p>
-        <p><strong>Crowd Composition:</strong> ${details["Crowd Composition"]}</p>
-        <p><strong>Price:</strong> Entry: ${details["Entry Fee"]}, Drinks: ${details.Drinks}</p>
-        <p><strong>Queue/Wait Time:</strong> ${details["Wait Time"]}</p>
-        <p><strong>Likelihood to Get In:</strong></p>
-        <p>Men-only Groups: ${details["Men-only Groups"]}</p>
-        <p>Women-only Groups: ${details["Women-only Groups"]}</p>
-        <p>Mixed Groups: ${details["Mixed Groups"]}</p>
-        <p><strong>Safety:</strong></p>
-        <p>Venue: ${details["Venue Safety"]}</p>
-        <p>Neighborhood: ${details["Neighborhood Safety"]}</p>
-        <button class="modal-close" onclick="closeModal()">Close</button>
-      `;
-      modal.classList.add("active");
-    }
+  // Populate location filter
+  locations.forEach(location => {
+    locationSelect.innerHTML += `<option value="${location}">${location}</option>`;
+  });
+
+  // Populate genre filter
+  genres.forEach(genre => {
+    genreSelect.innerHTML += `<option value="${genre}">${genre}</option>`;
+  });
+}
+
+function applyFilters() {
+  const selectedLocation = document.getElementById("location").value;
+  const selectedGenre = document.getElementById("genre").value;
+
+  // Filter clubs based on selection
+  const filteredClubs = allClubs.filter(club => 
+    (selectedLocation === "all" || club["Location"] === selectedLocation) &&
+    (selectedGenre === "all" || club.Genre === selectedGenre)
+  );
+
+  displayClubs(filteredClubs);
+}
+
+function displayClubs(clubs) {
+  const container = document.getElementById("club-container");
+  container.innerHTML = clubs.map(club => `
+    <div class="club-card" onclick="showModal('${club["Club Name"]}')">
+      <img src="${club["Image URL"] || 'placeholder.jpg'}" alt="${club["Club Name"]}">
+      <div class="basic-info">
+        <p>${club["Club Name"]}</p>
+        <p>Genre: ${club.Genre}</p>
+        <p>Location: ${club["Location"]}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function showModal(clubName) {
+  const modal = document.getElementById("modal");
+  const details = clubDetails[clubName];
+
+  if (details) {
+    const modalContent = document.getElementById("modal-content");
+    modalContent.innerHTML = `
+      <h2>${details["Club Name"]}</h2>
+      <p><strong>Music Genre:</strong> ${details.Genre}</p>
+      <p><strong>Location:</strong> ${details["Location"]}</p>
+      <p><strong>Price:</strong> Entry: ${details["Entry Fee"]}, Drinks: ${details.Drinks}</p>
+      <p><strong>Queue/Wait Time:</strong> ${details["Wait Time"]}</p>
+      <p><strong>Likelihood to Get In:</strong></p>
+      <p>Men-only Groups: ${details["Men-only Groups"]}</p>
+      <p>Women-only Groups: ${details["Women-only Groups"]}</p>
+      <p>Mixed Groups: ${details["Mixed Groups"]}</p>
+      <p><strong>Safety:</strong></p>
+      <p>Venue: ${details["Venue Safety"]}</p>
+      <p>Neighborhood: ${details["Neighborhood Safety"]}</p>
+      <button class="modal-close" onclick="closeModal()">Close</button>
+    `;
+    modal.classList.add("active");
   }
+}
 
-  function closeModal() {
-    document.getElementById("modal").classList.remove("active");
-  }
+function closeModal() {
+  document.getElementById("modal").classList.remove("active");
+}
 
-  // Initialize
-  fetchClubs();
+// Initialize
+fetchClubs();
 </script>
 
 </body>
