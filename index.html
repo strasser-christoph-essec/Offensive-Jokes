@@ -245,11 +245,10 @@ function applyFilters() {
 }
 
 function generateStars(rating) {
-  rating = Math.round(rating); // Round to nearest integer
-  let stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+  rating = Math.round(rating); // Ensure it's a whole number
+  let stars = '<span style="color: yellow; font-size: 1.2rem;">' + '★'.repeat(rating) + '☆'.repeat(5 - rating) + '</span>';
   return stars;
 }
-
   
 function displayClubs(clubs) {
   const container = document.getElementById("club-container");
@@ -257,8 +256,8 @@ function displayClubs(clubs) {
     <div class="club-card" onclick="showModal('${club["Club Name"]}')">
       <img src="${club["Image URL"] || 'placeholder.jpg'}" alt="${club["Club Name"]}">
       <div class="basic-info">
-        <p>${club["Club Name"]}</p>
-        <p>Rating: ${generateStars(club["Rating"] || 0)}</p>
+        <p style="color: #00a8e8; font-weight: bold;">${club["Club Name"]}</p>
+        <p>${generateStars(club["Rating"] || 0)}</p>
         <p>Location: ${club["Location"]}</p>
       </div>
     </div>
