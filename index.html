@@ -244,6 +244,13 @@ function applyFilters() {
   displayClubs(filteredClubs);
 }
 
+function generateStars(rating) {
+  rating = Math.round(rating); // Round to nearest integer
+  let stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+  return stars;
+}
+
+  
 function displayClubs(clubs) {
   const container = document.getElementById("club-container");
   container.innerHTML = clubs.map(club => `
