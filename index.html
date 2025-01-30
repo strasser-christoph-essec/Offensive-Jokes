@@ -251,8 +251,8 @@ function displayClubs(clubs) {
       <img src="${club["Image URL"] || 'placeholder.jpg'}" alt="${club["Club Name"]}">
       <div class="basic-info">
         <p>${club["Club Name"]}</p>
-        <p>Genre: ${club.Genre}</p>
         <p>Location: ${club["Location"]}</p>
+        <p>Rating: ${club["Rating"]}</p>
       </div>
     </div>
   `).join('');
