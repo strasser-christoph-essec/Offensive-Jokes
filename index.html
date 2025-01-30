@@ -246,10 +246,13 @@ function applyFilters() {
 
 function generateStars(rating) {
   rating = Math.round(rating); // Ensure it's a whole number
-  let stars = '<span style="color: yellow; font-size: 1.2rem;">' + '★'.repeat(rating) + '☆'.repeat(5 - rating) + '</span>';
+  let stars = '<span style="color: yellow; font-size: 1.2rem;">' 
+              + '⭐'.repeat(rating) 
+              + '✩'.repeat(5 - rating) 
+              + '</span>';
   return stars;
 }
-  
+
 function displayClubs(clubs) {
   const container = document.getElementById("club-container");
   container.innerHTML = clubs.map(club => `
@@ -257,8 +260,9 @@ function displayClubs(clubs) {
       <img src="${club["Image URL"] || 'placeholder.jpg'}" alt="${club["Club Name"]}">
       <div class="basic-info">
         <p style="color: #00a8e8; font-weight: bold;">${club["Club Name"]}</p>
-        <p>${generateStars(club["Rating"] || 0)}</p>
-        <p>Location: ${club["Location"]}</p>
+        <p>${club["Location"]}</p>
+        <p>Rating: ${generateStars(club["Rating"] || 0)}</p>
+        <p>${club["Location"]}<p>
       </div>
     </div>
   `).join('');
