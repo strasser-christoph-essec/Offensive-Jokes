@@ -246,8 +246,8 @@ function applyFilters() {
 
 function generateStars(rating) {
   rating = Math.round(rating);
-  let filledStars = '<span style="color: yellow; font-size: 1.2rem;">' + '⭐'.repeat(rating) + '</span>';
-  let emptyStars = '<span style="color: gray; font-size: 1.2rem;">' + '☆'.repeat(5 - rating) + '</span>';
+  let filledStars = '<span style="color: yellow; font-size: 1rem;">' + '⭐'.repeat(rating) + '</span>';
+  let emptyStars = '<span style="color: gray; font-size: 1rem;">' + '☆'.repeat(5 - rating) + '</span>';
   return filledStars + emptyStars;
 }
 
