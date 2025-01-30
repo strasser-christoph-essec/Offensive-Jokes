@@ -251,7 +251,7 @@ function displayClubs(clubs) {
       <img src="${club["Image URL"] || 'placeholder.jpg'}" alt="${club["Club Name"]}">
       <div class="basic-info">
         <p>${club["Club Name"]}</p>
-        <p>Rating: ${club["Rating"]}</p>
+        <p>Rating: ${generateStars(club["Rating"] || 0)}</p>
         <p>Location: ${club["Location"]}</p>
       </div>
     </div>
