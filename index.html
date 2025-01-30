@@ -261,8 +261,7 @@ function displayClubs(clubs) {
       <div class="basic-info">
         <p style="color: #00a8e8; font-weight: bold;">${club["Club Name"]}</p>
         <p>${club["Location"]}</p>
-        <p>Rating: ${generateStars(club["Rating"] || 0)}</p>
-        <p>${club["Location"]}<p>
+        <p>${generateStars(club["Rating"] || 0)}<p>
       </div>
     </div>
   `).join('');
