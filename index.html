@@ -138,6 +138,15 @@
     .modal-close:hover {
       background: #8a2be2;
     }
+    .filter-bar {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    gap: 1rem; /* Space between filters */
+    margin-bottom: 1.5rem; /* Space below the filter bar */
+    text-align: center;
+  }
+    
   </style>
 </head>
 <body>
@@ -155,18 +164,17 @@
 </nav>
 
 <main>
-  <div class="filter-bar">
+<div class="filter-bar">
     <label for="location">Location:</label>
     <select id="location" onchange="applyFilters()">
       <option value="all">All</option>
     </select>
-
+  
     <label for="genre">Genre:</label>
     <select id="genre" onchange="applyFilters()">
       <option value="all">All</option>
     </select>
   </div>
-
   <div class="club-container" id="club-container">
     <!-- Club cards will be dynamically generated here -->
   </div>
