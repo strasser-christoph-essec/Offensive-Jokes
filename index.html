@@ -222,12 +222,12 @@ function populateFilters(data) {
 
   // Populate location filter
   locations.forEach(location => {
-    locationSelect.innerHTML += <option value="${location}">${location}</option>;
+    locationSelect.innerHTML += `<option value="${location}">${location}</option>`;
   });
 
   // Populate genre filter
   genres.forEach(genre => {
-    genreSelect.innerHTML += <option value="${genre}">${genre}</option>;
+    genreSelect.innerHTML += `<option value="${genre}">${genre}</option>`;
   });
 }
 
@@ -251,8 +251,8 @@ function displayClubs(clubs) {
       <img src="${club["Image URL"] || 'placeholder.jpg'}" alt="${club["Club Name"]}">
       <div class="basic-info">
         <p>${club["Club Name"]}</p>
+        <p>Genre: ${club.Genre}</p>
         <p>Location: ${club["Location"]}</p>
-        <p>Rating: ${club["Rating"]}</p>
       </div>
     </div>
   `).join('');
