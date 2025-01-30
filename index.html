@@ -246,11 +246,9 @@ function applyFilters() {
 
 function generateStars(rating) {
   rating = Math.round(rating); // Ensure it's a whole number
-  let stars = '<span style="color: yellow; font-size: 1.2rem;">' 
-              + '⭐'.repeat(rating) 
-              + '✩'.repeat(5 - rating) 
-              + '</span>';
-  return stars;
+  let filledStars = '<span style="color: yellow; font-size: 1rem;">' + '⭐'.repeat(rating) + '</span>';
+  let emptyStars = '<span style="color: gray; font-size: 1rem;">' + '⭐'.repeat(5 - rating) + '</span>';
+  return filledStars + emptyStars;
 }
 
 function displayClubs(clubs) {
