@@ -349,14 +349,11 @@ fetchClubs();
   <button onclick="acceptCookies()" style="margin-left: 10px; padding: 5px 10px; background: #ff007f; border: none; color: white; cursor: pointer; border-radius: 5px;">Accept</button>
 </div>
 
-<script>
+
 function acceptCookies() {
   document.getElementById('cookie-banner').style.display = 'none';
   document.cookie = "cookiesAccepted=true; path=/; max-age=" + 60 * 60 * 24 * 30; // Stores acceptance for 30 days
 }
-</script>
-
-
 
 
 
