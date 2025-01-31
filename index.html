@@ -221,7 +221,7 @@
 
 
 <footer>
-  <p>&copy; 2025 Nightclub Reviews. All rights reserved.</p>
+  <p>&copy; 2025 Nightclub Reviews. All rights reserved. <a href="privacy-policy.html">Privacy Policy</a></p>
 </footer>
 
 <div id="modal" class="modal">
@@ -343,6 +343,23 @@ function closeModal() {
 
 // Initialize
 fetchClubs();
+
+<div id="cookie-banner" style="position: fixed; bottom: 0; width: 100%; background: #333; color: white; text-align: center; padding: 10px;">
+  This site uses cookies for analytics and user experience. 
+  <button onclick="acceptCookies()" style="margin-left: 10px; padding: 5px 10px; background: #ff007f; border: none; color: white; cursor: pointer; border-radius: 5px;">Accept</button>
+</div>
+
+<script>
+function acceptCookies() {
+  document.getElementById('cookie-banner').style.display = 'none';
+  document.cookie = "cookiesAccepted=true; path=/; max-age=" + 60 * 60 * 24 * 30; // Stores acceptance for 30 days
+}
+</script>
+
+
+
+
+
 </script>
 
 </body>
