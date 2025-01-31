@@ -77,23 +77,14 @@
       object-fit: cover;
       border-radius: 8px;
     }
-    /* Hide the info box by default */
     .club-card .basic-info {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0, 0, 0, 0.8);
-      color: #e0e0e0;
-      padding: 1rem;
-      text-align: center;
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-    }
-    /* Show the info box on hover */
-    .club-card:hover .basic-info {
-      opacity: 1;
-    }
+  position: relative; /* Removes absolute positioning */
+  background: rgba(0, 0, 0, 0.8);
+  color: #e0e0e0;
+  padding: 1rem;
+  text-align: center;
+  opacity: 1;  /* Always visible */
+}
     footer {
       background: linear-gradient(90deg, #8a2be2, #ff007f);
       color: #fff;
