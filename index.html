@@ -140,17 +140,50 @@
     }
    .filter-bar {
   display: flex;
-  justify-content: center; /* Centers horizontally */
-  align-items: center; /* Aligns items vertically */
-  gap: 1rem; /* Space between filter groups */
-  margin-bottom: 1.5rem; /* Space below the filter bar */
+  justify-content: center;
+  align-items: center;
+  gap: 2rem; /* Increased spacing between filters */
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1); /* Slight transparent background */
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Soft shadow */
 }
 
 .filter-group {
   display: flex;
-  flex-direction: column; /* Stack label above the select box */
-  align-items: center; /* Center align text */
+  flex-direction: column;
+  align-items: center;
 }
+
+.filter-group label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 0.3rem;
+}
+
+.filter-group select {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #888;
+  border-radius: 6px;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.filter-group select:hover {
+  border-color: #ff007f;
+}
+
+.filter-group select:focus {
+  outline: none;
+  border-color: #8a2be2;
+  box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+}
+
     
   </style>
 </head>
@@ -184,6 +217,7 @@
     </select>
   </div>
 </div>
+
 
   
   <div class="club-container" id="club-container">
