@@ -338,27 +338,54 @@ fetchClubs();
 
 </script>
 
-<!-- COOKIE BANNER - Place before </body> -->
-<div id="cookie-banner" style="position: fixed; bottom: 0; width: 100%; background: #333; color: white; text-align: center; padding: 10px;">
-  This site uses cookies for analytics and user experience. 
-  <button onclick="acceptCookies()" style="margin-left: 10px; padding: 5px 10px; background: #ff007f; border: none; color: white; cursor: pointer; border-radius: 5px;">Accept</button>
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="position: fixed; bottom: 0; width: 100%; background: #222; color: white; text-align: center; padding: 15px;">
+  <p>This site uses cookies to improve user experience. You can accept or customize your preferences.</p>
+  <button onclick="acceptCookies()" style="margin: 5px; padding: 8px 12px; background: #4CAF50; border: none; color: white; cursor: pointer; border-radius: 5px;">Accept All</button>
+  <button onclick="openCookieSettings()" style="margin: 5px; padding: 8px 12px; background: #FFA500; border: none; color: white; cursor: pointer; border-radius: 5px;">Customize</button>
+  <button onclick="rejectCookies()" style="margin: 5px; padding: 8px 12px; background: #FF4500; border: none; color: white; cursor: pointer; border-radius: 5px;">Reject All</button>
+</div>
+
+<!-- COOKIE SETTINGS POPUP -->
+<div id="cookie-settings" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1e1e1e; padding: 20px; border-radius: 10px; text-align: center; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+  <h2>Cookie Preferences</h2>
+  <label><input type="checkbox" id="necessary" checked disabled> Necessary (Always Enabled)</label><br>
+  <label><input type="checkbox" id="analytics"> Analytics (Google Analytics, etc.)</label><br>
+  <label><input type="checkbox" id="marketing"> Marketing (Ads, Tracking)</label><br>
+  <button onclick="saveCookiePreferences()" style="margin-top: 10px; padding: 8px 12px; background: #4CAF50; border: none; color: white; cursor: pointer; border-radius: 5px;">Save Preferences</button>
 </div>
 
 <script>
 function acceptCookies() {
-  document.getElementById('cookie-banner').style.display = 'none';
-  document.cookie = "cookiesAccepted=true; path=/; max-age=" + (60 * 60 * 24 * 30); // Stores acceptance for 30 days
+    localStorage.setItem("cookieConsent", JSON.stringify({ necessary: true, analytics: true, marketing: true }));
+    document.getElementById('cookie-banner').style.display = 'none';
 }
 
-// Ensure the banner only shows if cookies haven't been accepted
-window.onload = function() {
-  if (!document.cookie.includes("cookiesAccepted=true")) {
-    document.getElementById('cookie-banner').style.display = 'block';
-  } else {
+function rejectCookies() {
+    localStorage.setItem("cookieConsent", JSON.stringify({ necessary: true, analytics: false, marketing: false }));
     document.getElementById('cookie-banner').style.display = 'none';
-  }
+}
+
+function openCookieSettings() {
+    document.getElementById('cookie-settings').style.display = 'block';
+}
+
+function saveCookiePreferences() {
+    let analytics = document.getElementById('analytics').checked;
+    let marketing = document.getElementById('marketing').checked;
+    localStorage.setItem("cookieConsent", JSON.stringify({ necessary: true, analytics: analytics, marketing: marketing }));
+    document.getElementById('cookie-settings').style.display = 'none';
+    document.getElementById('cookie-banner').style.display = 'none';
+}
+
+window.onload = function() {
+    let consent = localStorage.getItem("cookieConsent");
+    if (!consent) {
+        document.getElementById('cookie-banner').style.display = 'block';
+    }
 };
 </script>
+
 
 
   
