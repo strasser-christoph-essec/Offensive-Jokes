@@ -385,6 +385,10 @@ function showModal(clubName) {
 
   if (details) {
     const modalContent = document.getElementById("modal-content");
+
+    // Get the Google Maps link from the dataset
+    const googleMapsUrl = details["Google Maps"] || "#";
+
     modalContent.innerHTML = `
       <h2 style="color: #00a8e8;">${details["Club Name"]}</h2>
       <p><strong>Music Genre:</strong> ${details.Genre}</p>
@@ -398,10 +402,13 @@ function showModal(clubName) {
       <p><strong>Safety:</strong></p>
       <p>Venue: ${details["Venue Safety"]}</p>
       <p>Neighborhood: ${details["Neighborhood Safety"]}</p>
+
       <p><strong>📍 Open in Google Maps:</strong></p>
       <p><a href="${googleMapsUrl}" target="_blank" style="color: #00a8e8; font-weight: bold;">View on Google Maps</a></p>
+
       <button class="modal-close" onclick="closeModal()">Close</button>
     `;
+    
     modal.classList.add("active");
   }
 }
