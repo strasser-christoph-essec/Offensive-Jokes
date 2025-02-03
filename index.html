@@ -309,12 +309,12 @@ function populateFilters(data) {
 
   // Populate location filter
   locations.forEach(location => {
-    locationSelect.innerHTML += <option value="${location}">${location}</option>;
+    locationSelect.innerHTML += `<option value="${location}">${location}</option>`;
   });
 
   // Populate genre filter
   genres.forEach(genre => {
-    genreSelect.innerHTML += <option value="${genre}">${genre}</option>;
+    genreSelect.innerHTML += `<option value="${genre}">${genre}</option>`;
   });
 }
 
@@ -369,7 +369,7 @@ function nextImage(event, index, img1, img2, img3) {
   const images = [img1, img2, img3].filter(Boolean);
   if (images.length > 0) {
     currentImages[index] = (currentImages[index] + 1) % images.length;
-    document.getElementById(club-image-${index}).src = images[currentImages[index]];
+    document.getElementById(`club-image-${index}`).src = images[currentImages[index]];
   }
 }
 
@@ -383,7 +383,7 @@ function prevImage(event, index, img1, img2, img3) {
   const images = [img1, img2, img3].filter(Boolean);
   if (images.length > 0) {
     currentImages[index] = (currentImages[index] - 1 + images.length) % images.length;
-    document.getElementById(club-image-${index}).src = images[currentImages[index]];
+    document.getElementById(`club-image-${index}`).src = images[currentImages[index]];
   }
 }
 
