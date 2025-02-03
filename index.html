@@ -133,19 +133,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 2rem; /* Increased spacing between filters */
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1); /* Slight transparent background */
   border-radius: 8px;
   margin-bottom: 2rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  position: relative; /* Ensures dropdowns position correctly */
-  z-index: 5;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Soft shadow */
 }
 
 .filter-group {
-  position: relative;
-  width: 200px; /* Ensure consistent width for all filter groups */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .filter-group label {
@@ -153,13 +152,9 @@
   font-weight: bold;
   color: #fff;
   margin-bottom: 0.3rem;
-  display: block;
-  text-align: center;
 }
 
 .filter-group select {
-  width: 100%; /* Ensures select fills the filter box */
-  min-width: 200px; /* Ensures enough space for long names */
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border: 1px solid #888;
@@ -167,25 +162,8 @@
   background-color: #1e1e1e;
   color: #e0e0e0;
   cursor: pointer;
-  transition: border-color 0.3s;
-  height: 40px;
-  overflow: hidden;
+  transition: all 0.3s;
 }
-
-.filter-group select.expanded {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%; /* Ensures expanded dropdown maintains width */
-  max-height: 160px;
-  overflow-y: auto;
-  border-color: #ff007f;
-  z-index: 20;
-  background-color: #1e1e1e;
-}
-
-
-
 
 .filter-group select:hover {
   border-color: #ff007f;
@@ -331,12 +309,12 @@ function populateFilters(data) {
 
   // Populate location filter
   locations.forEach(location => {
-    locationSelect.innerHTML += `<option value="${location}">${location}</option>`;
+    locationSelect.innerHTML += <option value="${location}">${location}</option>;
   });
 
   // Populate genre filter
   genres.forEach(genre => {
-    genreSelect.innerHTML += `<option value="${genre}">${genre}</option>`;
+    genreSelect.innerHTML += <option value="${genre}">${genre}</option>;
   });
 }
 
@@ -391,7 +369,7 @@ function nextImage(event, index, img1, img2, img3) {
   const images = [img1, img2, img3].filter(Boolean);
   if (images.length > 0) {
     currentImages[index] = (currentImages[index] + 1) % images.length;
-    document.getElementById(`club-image-${index}`).src = images[currentImages[index]];
+    document.getElementById(club-image-${index}).src = images[currentImages[index]];
   }
 }
 
@@ -405,7 +383,7 @@ function prevImage(event, index, img1, img2, img3) {
   const images = [img1, img2, img3].filter(Boolean);
   if (images.length > 0) {
     currentImages[index] = (currentImages[index] - 1 + images.length) % images.length;
-    document.getElementById(`club-image-${index}`).src = images[currentImages[index]];
+    document.getElementById(club-image-${index}).src = images[currentImages[index]];
   }
 }
 
@@ -452,28 +430,6 @@ function closeModal() {
 // Initialize
 fetchClubs();
 
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".filter-group select").forEach(select => {
-    select.addEventListener("click", function(event) {
-      this.size = 5; // Show 5 options
-      this.classList.add("expanded");
-      event.stopPropagation();
-    });
-
-    // Close when clicking outside
-    document.addEventListener("click", function(event) {
-      if (!select.contains(event.target)) {
-        select.size = 1; // Collapse back to 1 option
-        select.classList.remove("expanded");
-      }
-    });
-  });
-});
-
-
-
-
-  
 </script>
 
 <!-- COOKIE BANNER -->
