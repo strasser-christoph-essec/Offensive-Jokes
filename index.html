@@ -169,10 +169,16 @@
 }
 
 .filter-group select.expanded {
+  position: absolute; /* Makes dropdown float */
+  top: 100%; /* Positions dropdown below the label */
+  left: 0;
+  width: 100%; /* Ensures full width */
   height: auto;
   max-height: 160px; /* Display only 5 options */
-  overflow-y: auto; /* Enable scrolling */
+  overflow-y: auto; /* Enables scrolling */
   border-color: #ff007f;
+  z-index: 10; /* Ensures dropdown appears above other content */
+  background-color: #1e1e1e; /* Matches the theme */
 }
 
 
