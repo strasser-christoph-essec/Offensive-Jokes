@@ -163,15 +163,17 @@
   color: #e0e0e0;
   cursor: pointer;
   transition: all 0.3s;
-  max-height: 40px; /* Default height */
-  overflow: hidden; /* Hide overflow by default */
+  height: 40px; /* Default height */
+  overflow: hidden; /* No scrolling by default */
 }
 
 .filter-group select.expanded {
-  max-height: 150px; /* Expand height when clicked */
+  height: auto;
+  max-height: 160px; /* Display only 5 options */
   overflow-y: auto; /* Enable scrolling */
   border-color: #ff007f;
 }
+
 
 
 .filter-group select:hover {
@@ -441,18 +443,22 @@ fetchClubs();
 
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".filter-group select").forEach(select => {
-    select.addEventListener("click", function() {
+    select.addEventListener("click", function(event) {
+      this.size = 5; // Show 5 options
       this.classList.add("expanded");
+      event.stopPropagation();
     });
 
     // Close when clicking outside
     document.addEventListener("click", function(event) {
       if (!select.contains(event.target)) {
+        select.size = 1; // Collapse back to 1 option
         select.classList.remove("expanded");
       }
     });
   });
 });
+
 
 
   
