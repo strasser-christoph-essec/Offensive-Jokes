@@ -398,6 +398,8 @@ function showModal(clubName) {
       <p><strong>Safety:</strong></p>
       <p>Venue: ${details["Venue Safety"]}</p>
       <p>Neighborhood: ${details["Neighborhood Safety"]}</p>
+      <p><strong>📍 Open in Google Maps:</strong></p>
+      <p><a href="${googleMapsUrl}" target="_blank" style="color: #00a8e8; font-weight: bold;">View on Google Maps</a></p>
       <button class="modal-close" onclick="closeModal()">Close</button>
     `;
     modal.classList.add("active");
