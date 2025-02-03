@@ -331,11 +331,11 @@ function generateStars(rating) {
 function displayClubs(clubs) {
   const container = document.getElementById("club-container");
   container.innerHTML = clubs.map((club, index) => `
-    <div class="club-card">
-      <div class="image-carousel">
-        <button class="prev-btn" onclick="prevImage(${index})">&#10094;</button>
+    <div class="club-card" onclick="showModal('${club["Club Name"]}')">
+      <div class="image-carousel" onclick="event.stopPropagation();">
+        <button class="prev-btn" onclick="prevImage(event, ${index}, '${club["Image URL"]}', '${club["Image URL 2"]}', '${club["Image URL 3"]}')">&#10094;</button>
         <img id="club-image-${index}" src="${club["Image URL"] || 'placeholder.jpg'}" alt="${club["Club Name"]}">
-        <button class="next-btn" onclick="nextImage(${index}, '${club["Image URL"]}', '${club["Image URL 2"]}', '${club["Image URL 3"]}')">&#10095;</button>
+        <button class="next-btn" onclick="nextImage(event, ${index}, '${club["Image URL"]}', '${club["Image URL 2"]}', '${club["Image URL 3"]}')">&#10095;</button>
       </div>
       <div class="basic-info">
         <p style="color: #00a8e8; font-weight: bold;">${club["Club Name"]}</p>
@@ -346,9 +346,12 @@ function displayClubs(clubs) {
   `).join('');
 }
 
+
 let currentImages = {};
 
-function nextImage(index, img1, img2, img3) {
+function nextImage(event, index, img1, img2, img3) {
+  event.stopPropagation(); // Prevent modal from opening
+
   if (!currentImages[index]) {
     currentImages[index] = 0;
   }
@@ -360,7 +363,9 @@ function nextImage(index, img1, img2, img3) {
   }
 }
 
-function prevImage(index) {
+function prevImage(event, index, img1, img2, img3) {
+  event.stopPropagation(); // Prevent modal from opening
+
   if (!currentImages[index]) {
     currentImages[index] = 0;
   }
@@ -371,6 +376,7 @@ function prevImage(index) {
     document.getElementById(`club-image-${index}`).src = images[currentImages[index]];
   }
 }
+
 
 
 function showModal(clubName) {
