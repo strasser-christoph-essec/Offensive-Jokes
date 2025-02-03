@@ -175,6 +175,44 @@
   box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
 }
 
+
+.image-carousel {
+  position: relative;
+  width: 100%;
+}
+
+.image-carousel img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.prev-btn, .next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 50%;
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+.prev-btn:hover, .next-btn:hover {
+  background-color: rgba(255, 0, 127, 0.7);
+}
+
     
   </style>
 </head>
@@ -292,17 +330,48 @@ function generateStars(rating) {
 
 function displayClubs(clubs) {
   const container = document.getElementById("club-container");
-  container.innerHTML = clubs.map(club => `
-    <div class="club-card" onclick="showModal('${club["Club Name"]}')">
-      <img src="${club["Image URL"] || 'placeholder.jpg'}" alt="${club["Club Name"]}">
+  container.innerHTML = clubs.map((club, index) => `
+    <div class="club-card">
+      <div class="image-carousel">
+        <button class="prev-btn" onclick="prevImage(${index})">&#10094;</button>
+        <img id="club-image-${index}" src="${club["Image URL"] || 'placeholder.jpg'}" alt="${club["Club Name"]}">
+        <button class="next-btn" onclick="nextImage(${index}, '${club["Image URL"]}', '${club["Image URL 2"]}', '${club["Image URL 3"]}')">&#10095;</button>
+      </div>
       <div class="basic-info">
         <p style="color: #00a8e8; font-weight: bold;">${club["Club Name"]}</p>
         <p>${club["Location"]}</p>
-        <p>${generateStars(club["Rating"] || 0)}<p>
+        <p>${generateStars(club["Rating"] || 0)}</p>
       </div>
     </div>
   `).join('');
 }
+
+let currentImages = {};
+
+function nextImage(index, img1, img2, img3) {
+  if (!currentImages[index]) {
+    currentImages[index] = 0;
+  }
+  
+  const images = [img1, img2, img3].filter(Boolean);
+  if (images.length > 0) {
+    currentImages[index] = (currentImages[index] + 1) % images.length;
+    document.getElementById(`club-image-${index}`).src = images[currentImages[index]];
+  }
+}
+
+function prevImage(index) {
+  if (!currentImages[index]) {
+    currentImages[index] = 0;
+  }
+
+  const images = [img1, img2, img3].filter(Boolean);
+  if (images.length > 0) {
+    currentImages[index] = (currentImages[index] - 1 + images.length) % images.length;
+    document.getElementById(`club-image-${index}`).src = images[currentImages[index]];
+  }
+}
+
 
 function showModal(clubName) {
   const modal = document.getElementById("modal");
