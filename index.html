@@ -133,19 +133,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem; /* Increased spacing between filters */
+  gap: 2rem;
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.1); /* Slight transparent background */
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   margin-bottom: 2rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Soft shadow */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  position: relative; /* Ensures dropdowns position correctly */
+  z-index: 5;
 }
 
 .filter-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative
+  position: relative;
+  width: 200px; /* Ensure consistent width for all filter groups */
 }
 
 .filter-group label {
@@ -153,9 +153,13 @@
   font-weight: bold;
   color: #fff;
   margin-bottom: 0.3rem;
+  display: block;
+  text-align: center;
 }
 
 .filter-group select {
+  width: 100%; /* Ensures select fills the filter box */
+  min-width: 200px; /* Ensures enough space for long names */
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border: 1px solid #888;
@@ -163,22 +167,21 @@
   background-color: #1e1e1e;
   color: #e0e0e0;
   cursor: pointer;
-  transition: all 0.3s;
-  height: 40px; /* Default height */
-  overflow: hidden; /* No scrolling by default */
+  transition: border-color 0.3s;
+  height: 40px;
+  overflow: hidden;
 }
 
 .filter-group select.expanded {
-  position: absolute; /* Makes dropdown float */
-  top: 100%; /* Positions dropdown below the label */
+  position: absolute;
+  top: 100%;
   left: 0;
-  width: 100%; /* Ensures full width */
-  height: auto;
-  max-height: 160px; /* Display only 5 options */
-  overflow-y: auto; /* Enables scrolling */
+  width: 100%; /* Ensures expanded dropdown maintains width */
+  max-height: 160px;
+  overflow-y: auto;
   border-color: #ff007f;
-  z-index: 10; /* Ensures dropdown appears above other content */
-  background-color: #1e1e1e; /* Matches the theme */
+  z-index: 20;
+  background-color: #1e1e1e;
 }
 
 
