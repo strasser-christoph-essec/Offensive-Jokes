@@ -163,7 +163,16 @@
   color: #e0e0e0;
   cursor: pointer;
   transition: all 0.3s;
+  max-height: 40px; /* Default height */
+  overflow: hidden; /* Hide overflow by default */
 }
+
+.filter-group select.expanded {
+  max-height: 150px; /* Expand height when clicked */
+  overflow-y: auto; /* Enable scrolling */
+  border-color: #ff007f;
+}
+
 
 .filter-group select:hover {
   border-color: #ff007f;
@@ -430,6 +439,23 @@ function closeModal() {
 // Initialize
 fetchClubs();
 
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".filter-group select").forEach(select => {
+    select.addEventListener("click", function() {
+      this.classList.add("expanded");
+    });
+
+    // Close when clicking outside
+    document.addEventListener("click", function(event) {
+      if (!select.contains(event.target)) {
+        select.classList.remove("expanded");
+      }
+    });
+  });
+});
+
+
+  
 </script>
 
 <!-- COOKIE BANNER -->
