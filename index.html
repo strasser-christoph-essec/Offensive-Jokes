@@ -494,24 +494,62 @@ window.onload = function() {
 <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
 <style>
-/* Side Menu */
+/* Side Menu (Fixed & Properly Hidden) */
 .side-menu {
   position: fixed;
   top: 0;
-  right: -250px; /* Hide menu off-screen */
+  right: 0;
   width: 250px;
   height: 100%;
   background: #1e1e1e;
   color: white;
   padding: 20px;
   box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
-  transition: right 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 1000;
-  overflow-x: hidden; /* Prevents horizontal scroll issues */
+  transform: translateX(100%); /* Moves menu completely off-screen */
+  transition: transform 0.3s ease-in-out;
 }
+
+/* Active class to show the menu */
+.side-menu.active {
+  transform: translateX(0); /* Slide-in effect */
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Menu Toggle Button */
+.menu-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #ff007f;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+  z-index: 1100; /* Keep button above everything */
+}
+
+.menu-toggle:hover {
+  background: #8a2be2;
+}
+
 
 
 .side-menu h2 {
@@ -571,11 +609,7 @@ window.onload = function() {
 <script>
 function toggleMenu() {
   let menu = document.getElementById("sideMenu");
-  if (menu.style.right === "0px") {
-    menu.style.right = "-250px"; // Close the menu
-  } else {
-    menu.style.right = "0px"; // Open the menu
-  }
+  menu.classList.toggle("active"); // Adds/removes "active" class
 }
 
 </script>
