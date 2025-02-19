@@ -498,7 +498,7 @@ window.onload = function() {
 .side-menu {
   position: fixed;
   top: 0;
-  right: -250px; /* Hidden initially */
+  right: -250px; /* Hide menu off-screen */
   width: 250px;
   height: 100%;
   background: #1e1e1e;
@@ -509,7 +509,10 @@ window.onload = function() {
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 1000;
+  overflow-x: hidden; /* Prevents horizontal scroll issues */
 }
+
 
 .side-menu h2 {
   font-size: 1.5rem;
