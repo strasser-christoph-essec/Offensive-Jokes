@@ -92,9 +92,25 @@
 
 <header>
   <div class="header-container">
-    <h1>Best Clubs in Amsterdam</h1>
+    <h1>Best Clubs in CITY_NAME</h1>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
   </div>
 </header>
+
+<!-- Right Side Menu -->
+<div id="sideMenu" class="side-menu">
+  <h2>Location</h2>
+  <a href="index.html" class="menu-link">All</a>
+  <a href="amsterdam.html" class="menu-link">Amsterdam</a>
+  <a href="barcelona.html" class="menu-link">Barcelona</a>
+  <a href="berlin.html" class="menu-link">Berlin</a>
+  <a href="london.html" class="menu-link">London</a>
+  <a href="miami.html" class="menu-link">Miami</a>
+  <a href="newyork.html" class="menu-link">New York</a>
+  <a href="paris.html" class="menu-link">Paris</a>
+  <a href="sanfrancisco.html" class="menu-link">San Francisco</a>
+  <a href="vienna.html" class="menu-link">Vienna</a>
+</div>
 
 <main>
   <h2>Explore the Best Clubs in Amsterdam</h2>
@@ -111,9 +127,79 @@
   </div>
 </main>
 
+
 <footer>
   <p>&copy; 2025 Nightclub Reviews. All rights reserved.</p>
 </footer>
+
+<script>
+function toggleMenu() {
+  let menu = document.getElementById("sideMenu");
+  menu.classList.toggle("active");
+}
+</script>
+
+<style>
+/* Side Menu */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 100%;
+  background: #1e1e1e;
+  color: white;
+  padding: 20px;
+  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  overflow-y: auto;
+}
+
+/* Active class to show the menu */
+.side-menu.active {
+  transform: translateX(0);
+}
+
+/* Menu Links */
+.menu-link {
+  display: block;
+  text-decoration: none;
+  color: #00a8e8;
+  padding: 10px;
+  font-size: 1.2rem;
+  width: 100%;
+  text-align: center;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.menu-link:hover {
+  background: #ff007f;
+  color: white;
+}
+
+/* Menu Toggle Button */
+.menu-toggle {
+  background: #ff007f;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+  z-index: 1100;
+}
+
+.menu-toggle:hover {
+  background: #8a2be2;
+}
+</style>
 
 </body>
 </html>
