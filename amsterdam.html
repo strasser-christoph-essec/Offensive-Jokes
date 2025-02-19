@@ -234,10 +234,27 @@
 
 
 <main>
-  <h2>Explore the Best Clubs in Amsterdam</h2>
+<div class="filter-bar">
+  <div class="filter-group">
+    <label for="location">Location:</label>
+    <select id="location" onchange="applyFilters()">
+      <option value="all">All</option>
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label for="genre">Genre:</label>
+    <select id="genre" onchange="applyFilters()">
+      <option value="all">All</option>
+    </select>
+  </div>
+</div>
+
+<h2>Explore the Best Clubs in Amsterdam</h2>
   <p>Amsterdam is renowned for its vibrant nightlife and electronic music scene. From legendary underground spots to world-famous dance clubs, the city offers something for everyone. Whether you're into techno, house, or hip-hop, Amsterdam's clubs guarantee unforgettable nights.</p>
 
   <h2>Top Clubs in Amsterdam</h2>
+  
   <div class="club-container" id="club-container">
     <!-- Club cards will be dynamically generated here -->
   </div>
