@@ -228,21 +228,8 @@
 <header>
   <div class="header-container">
     <h1>Nightclub <span class="highlight-text">Reviews</span></h1>
-    <!-- Menu Toggle Button inside header -->
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
   </div>
 </header>
-
-<!-- Right Side Menu -->
-<div id="sideMenu" class="side-menu">
-  <button class="close-btn" onclick="toggleMenu()">✖</button>
-  <h2>Select a City</h2>
-  <a href="newyork.html" class="menu-link">New York</a>
-  <a href="losangeles.html" class="menu-link">Los Angeles</a>
-  <a href="miami.html" class="menu-link">Miami</a>
-  <a href="chicago.html" class="menu-link">Chicago</a>
-</div>
-
 
 
 
@@ -322,12 +309,12 @@ function populateFilters(data) {
 
   // Populate location filter
   locations.forEach(location => {
-    locationSelect.innerHTML += `<option value="${location}">${location}</option>`;
+    locationSelect.innerHTML += <option value="${location}">${location}</option>;
   });
 
   // Populate genre filter
   genres.forEach(genre => {
-    genreSelect.innerHTML += `<option value="${genre}">${genre}</option>`;
+    genreSelect.innerHTML += <option value="${genre}">${genre}</option>;
   });
 }
 
@@ -382,7 +369,7 @@ function nextImage(event, index, img1, img2, img3) {
   const images = [img1, img2, img3].filter(Boolean);
   if (images.length > 0) {
     currentImages[index] = (currentImages[index] + 1) % images.length;
-    document.getElementById(`club-image-${index}`).src = images[currentImages[index]];
+    document.getElementById(club-image-${index}).src = images[currentImages[index]];
   }
 }
 
@@ -396,7 +383,7 @@ function prevImage(event, index, img1, img2, img3) {
   const images = [img1, img2, img3].filter(Boolean);
   if (images.length > 0) {
     currentImages[index] = (currentImages[index] - 1 + images.length) % images.length;
-    document.getElementById(`club-image-${index}`).src = images[currentImages[index]];
+    document.getElementById(club-image-${index}).src = images[currentImages[index]];
   }
 }
 
@@ -491,182 +478,6 @@ window.onload = function() {
         document.getElementById('cookie-banner').style.display = 'block';
     }
 };
-</script>
-
-<!-- Right Side Menu -->
-<div id="sideMenu" class="side-menu">
-  <button class="close-btn" onclick="toggleMenu()">✖</button>
-  <h2>Select a City</h2>
-  <a href="newyork.html" class="menu-link">New York</a>
-  <a href="losangeles.html" class="menu-link">Los Angeles</a>
-  <a href="miami.html" class="menu-link">Miami</a>
-  <a href="chicago.html" class="menu-link">Chicago</a>
-</div>
-
-<!-- Menu Toggle Button -->
-<button class="menu-toggle" onclick="toggleMenu()">☰</button>
-
-<style>
-/* Side Menu */
-.side-menu {
-  position: fixed;
-  top: 0;
-  right: -250px; /* Hidden initially */
-  width: 250px;
-  height: 100%;
-  background: #1e1e1e;
-  color: white;
-  padding: 20px;
-  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
-  transition: right 0.3s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.side-menu h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.menu-link {
-  display: block;
-  text-decoration: none;
-  color: #00a8e8;
-  padding: 10px;
-  font-size: 1.2rem;
-  width: 100%;
-  text-align: center;
-  border-radius: 5px;
-  transition: background 0.3s;
-}
-
-.menu-link:hover {
-  background: #ff007f;
-  color: white;
-}
-
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-/* Menu Toggle Button */
-.menu-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #ff007f;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background 0.3s;
-}
-
-.menu-toggle:hover {
-  background: #8a2be2;
-}
-
-/* Adjust Header Layout */
-.header-container {
-  display: flex;
-  justify-content: space-between; /* Pushes elements apart */
-  align-items: center;
-  width: 100%;
-  max-width: 1200px; /* Keeps things centered */
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-/* Menu Toggle Button Inside Header */
-.menu-toggle {
-  background: #ff007f;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background 0.3s;
-}
-
-.menu-toggle:hover {
-  background: #8a2be2;
-}
-
-/* Side Menu */
-.side-menu {
-  position: fixed;
-  top: 0;
-  right: -250px; /* Initially hidden */
-  width: 250px;
-  height: 100%;
-  background: #1e1e1e;
-  color: white;
-  padding: 20px;
-  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
-  transition: right 0.3s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 1000;
-}
-
-.side-menu h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.menu-link {
-  display: block;
-  text-decoration: none;
-  color: #00a8e8;
-  padding: 10px;
-  font-size: 1.2rem;
-  width: 100%;
-  text-align: center;
-  border-radius: 5px;
-  transition: background 0.3s;
-}
-
-.menu-link:hover {
-  background: #ff007f;
-  color: white;
-}
-
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-
-  
-</style>
-
-<script>
-function toggleMenu() {
-  let menu = document.getElementById("sideMenu");
-  if (menu.style.right === "0px") {
-    menu.style.right = "-250px"; // Close the menu
-  } else {
-    menu.style.right = "0px"; // Open the menu
-  }
-}
 </script>
 
 
