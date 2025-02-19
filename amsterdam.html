@@ -234,7 +234,7 @@
 
 
 <main>
-<div class="filter-bar">
+<!-- <div class="filter-bar">
   <div class="filter-group">
     <label for="location">Location:</label>
     <select id="location" onchange="applyFilters()">
@@ -248,7 +248,7 @@
       <option value="all">All</option>
     </select>
   </div>
-</div>
+</div> -->
 
 <h2>Explore the Best Clubs in Amsterdam</h2>
   <p>Amsterdam is renowned for its vibrant nightlife and electronic music scene. From legendary underground spots to world-famous dance clubs, the city offers something for everyone. Whether you're into techno, house, or hip-hop, Amsterdam's clubs guarantee unforgettable nights.</p>
@@ -284,55 +284,56 @@ async function fetchClubs() {
 
     console.log("Fetched data:", data); // Debugging
 
-    allClubs = data; // Store full data for filtering
+    // Filter only clubs from Amsterdam
+    const amsterdamClubs = data.filter(club => club["Location"] === "Amsterdam");
+
+    allClubs = amsterdamClubs; // Store filtered data
     clubDetails = {};
 
     // Populate club details
-    data.forEach(club => {
+    amsterdamClubs.forEach(club => {
       clubDetails[club["Club Name"]] = club;
     });
 
-    // Populate filters dynamically
-    populateFilters(data);
-
-    // Display all clubs initially
-    displayClubs(data);
+    // Display only Amsterdam clubs
+    displayClubs(amsterdamClubs);
   } catch (error) {
     console.error("Error fetching club data:", error);
   }
 }
 
-function populateFilters(data) {
-  const locationSelect = document.getElementById("location");
-  const genreSelect = document.getElementById("genre");
 
-  // Get unique locations & genres
-  const locations = [...new Set(data.map(club => club["Location"]))];
-  const genres = [...new Set(data.map(club => club.Genre))];
+// function populateFilters(data) {
+//   const locationSelect = document.getElementById("location");
+//   const genreSelect = document.getElementById("genre");
 
-  // Populate location filter
-  locations.forEach(location => {
-    locationSelect.innerHTML += `<option value="${location}">${location}</option>`;
-  });
+//   // Get unique locations & genres
+//   const locations = [...new Set(data.map(club => club["Location"]))];
+//   const genres = [...new Set(data.map(club => club.Genre))];
 
-  // Populate genre filter
-  genres.forEach(genre => {
-    genreSelect.innerHTML += `<option value="${genre}">${genre}</option>`;
-  });
-}
+//   // Populate location filter
+//   locations.forEach(location => {
+//     locationSelect.innerHTML += `<option value="${location}">${location}</option>`;
+//   });
 
-function applyFilters() {
-  const selectedLocation = document.getElementById("location").value;
-  const selectedGenre = document.getElementById("genre").value;
+//   // Populate genre filter
+//   genres.forEach(genre => {
+//     genreSelect.innerHTML += `<option value="${genre}">${genre}</option>`;
+//   });
+// }
 
-  // Filter clubs based on selection
-  const filteredClubs = allClubs.filter(club => 
-    (selectedLocation === "all" || club["Location"] === selectedLocation) &&
-    (selectedGenre === "all" || club.Genre === selectedGenre)
-  );
+// function applyFilters() {
+//   const selectedLocation = document.getElementById("location").value;
+//   const selectedGenre = document.getElementById("genre").value;
 
-  displayClubs(filteredClubs);
-}
+//   // Filter clubs based on selection
+//   const filteredClubs = allClubs.filter(club => 
+//     (selectedLocation === "all" || club["Location"] === selectedLocation) &&
+//     (selectedGenre === "all" || club.Genre === selectedGenre)
+//   );
+
+//   displayClubs(filteredClubs);
+// }
 
 function generateStars(rating) {
   rating = Math.round(rating);
