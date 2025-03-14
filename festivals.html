@@ -283,19 +283,22 @@ async function fetchClubs() {
 
     console.log("Fetched data:", data); // Debugging
 
-    // Filter only clubs from London
-    const londonClubs = data.filter(club => club["Location"] === "London");
+    // Define cities to exclude
+    const excludedCities = ["London", "Amsterdam", "Barcelona", "Berlin", "Miami", "New York", "Paris", "San Francisco", "Vienna"];
 
-    allClubs = londonClubs; // Store filtered data
+    // Filter out clubs from the excluded cities
+    const filteredClubs = data.filter(club => !excludedCities.includes(club["Location"]));
+
+    allClubs = filteredClubs; // Store filtered data
     clubDetails = {};
 
     // Populate club details
-    londonClubs.forEach(club => {
+    filteredClubs.forEach(club => {
       clubDetails[club["Club Name"]] = club;
     });
 
-    // Display only London clubs
-    displayClubs(londonClubs);
+    // Display clubs that are NOT in excluded cities
+    displayClubs(filteredClubs);
   } catch (error) {
     console.error("Error fetching club data:", error);
   }
