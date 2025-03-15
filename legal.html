@@ -18,7 +18,38 @@
         a {
             color: #00a8e8;
         }
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            text-align: center;
+            font-size: 14px;
+        }
+        #cookie-banner button {
+            background-color: #ff007f;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin-left: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
     </style>
+    <script>
+        function acceptCookies() {
+            document.getElementById("cookie-banner").style.display = "none";
+            document.cookie = "cookieConsent=true; path=/; max-age=" + (60 * 60 * 24 * 365);
+        }
+        function checkCookieConsent() {
+            if (document.cookie.includes("cookieConsent=true")) {
+                document.getElementById("cookie-banner").style.display = "none";
+            }
+        }
+        window.onload = checkCookieConsent;
+    </script>
 </head>
 <body>
     <h1>Legal Notice & Privacy Policy</h1>
@@ -81,6 +112,16 @@
         <li>You can <strong>opt out of Google Ads</strong> here: <a href="https://adssettings.google.com/" target="_blank">Google Ad Settings</a>.</li>
     </ul>
 
+    <h2>Do Not Sell My Personal Information (CCPA Compliance)</h2>
+    <p>Under the California Consumer Privacy Act (CCPA), California residents can opt out of the sale of their personal information.</p>
+    <p><a href="mailto:your@email.com?subject=Do Not Sell My Info Request">Click here to opt-out</a></p>
+
     <p><a href="index.html">Back to Home</a></p>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner">
+        <p>We use cookies for analytics, ads, and improving user experience. By continuing, you accept our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+        <button onclick="acceptCookies()">Accept</button>
+    </div>
 </body>
 </html>
