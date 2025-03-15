@@ -409,16 +409,12 @@ function showModal(clubName) {
       <h2 style="color: #00a8e8;">${details["Club Name"]}</h2>
       <p><strong>Music Genre:</strong> ${details.Genre}</p>
       <p><strong>Location:</strong> ${details["Location"]}</p>
-      <p><strong>Price:</strong> Entry: ${details["Entry Fee"]}, Drinks: ${details.Drinks}</p>
-      <p><strong>Queue/Wait Time:</strong> ${details["Wait Time"]}</p>
-      <p><strong>Likelihood to Get In:</strong></p>
-      <p>Men-only Groups: ${details["Men-only Groups"]}</p>
-      <p>Women-only Groups: ${details["Women-only Groups"]}</p>
-      <p>Mixed Groups: ${details["Mixed Groups"]}</p>
-      <p><strong>Safety:</strong></p>
-      <p>Venue: ${details["Venue Safety"]}</p>
-      <p>Neighborhood: ${details["Neighborhood Safety"]}</p>
-
+      <p><strong>Dates:</strong> ${details["Wait Time"]}</p>
+      <p><strong>Ticket Price:</strong> ${details["Entry Fee"]}</p>
+      <p><strong>Entry Wait Time:</strong> ${details["Wait Time"]}</p>    
+      <p><strong>Vibe:</strong> ${details["Men-only Groups"]}</p>
+      <p><strong>Camping Available:</strong> ${details["Women-only Groups"]}</p>
+      <p>Best for: ${details["Mixed Groups"]}</p>
       <p><strong>📍 Open in Google Maps:</strong></p>
       <p><a href="${googleMapsUrl}" target="_blank" style="color: #00a8e8; font-weight: bold;">View on Google Maps</a></p>
 
