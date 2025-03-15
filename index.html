@@ -299,24 +299,39 @@ async function fetchClubs() {
   }
 }
 
-function populateFilters(data) {
+function populateFilters() {
   const locationSelect = document.getElementById("location");
   const genreSelect = document.getElementById("genre");
 
-  // Get unique locations & genres
-  const locations = [...new Set(data.map(club => club["Location"]))];
-  const genres = [...new Set(data.map(club => club.Genre))];
+  // Predefined list of cities for filtering
+  const allowedLocations = [
+    "Amsterdam",
+    "Barcelona",
+    "Berlin",
+    "London",
+    "Miami",
+    "New York",
+    "Paris",
+    "San Francisco",
+    "Vienna"
+  ];
 
-  // Populate location filter
-  locations.forEach(location => {
-    locationSelect.innerHTML += `<option value="${location}">${location}</option>`;
+  // Populate location filter dropdown (Only allowed cities)
+  locationSelect.innerHTML = `<option value="all">All</option>`;
+  allowedLocations.forEach(city => {
+    locationSelect.innerHTML += `<option value="${city}">${city}</option>`;
   });
 
+  // Get unique genres from the dataset
+  const uniqueGenres = [...new Set(allClubs.map(club => club.Genre))];
+
   // Populate genre filter
-  genres.forEach(genre => {
+  genreSelect.innerHTML = `<option value="all">All</option>`;
+  uniqueGenres.forEach(genre => {
     genreSelect.innerHTML += `<option value="${genre}">${genre}</option>`;
   });
 }
+
 
 function applyFilters() {
   const selectedLocation = document.getElementById("location").value;
