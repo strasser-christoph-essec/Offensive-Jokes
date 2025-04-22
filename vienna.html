@@ -346,11 +346,11 @@ function displayClubs(clubs) {
   const container = document.getElementById("club-container");
   container.innerHTML = clubs.map((club, index) => `
     <div class="club-card" onclick="showModal('${club["Club Name"]}')">
-      <div class="image-carousel" onclick="event.stopPropagation();">
+      <div class="image-carousel">
         <button class="prev-btn" onclick="prevImage(event, ${index}, '${club["Image URL"]}', '${club["Image URL 2"]}', '${club["Image URL 3"]}')">&#10094;</button>
-        <img id="club-image-${index}" src="${club["Image URL"] || 'placeholder.jpg'}" alt="${club["Club Name"]}">
+        <img id="club-image-${index}" src="${club["Image URL"] || 'placeholder.jpg'}" alt="${club["Club Name"]}" onclick="showModal('${club["Club Name"]}')">
         <button class="next-btn" onclick="nextImage(event, ${index}, '${club["Image URL"]}', '${club["Image URL 2"]}', '${club["Image URL 3"]}')">&#10095;</button>
-      </div>
+      </div>   
       <div class="basic-info">
         <p style="color: #00a8e8; font-weight: bold;">${club["Club Name"]}</p>
         <p>${club["Location"]}</p>
