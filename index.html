@@ -380,14 +380,15 @@ function applyFilters() {
 
 function generateStars(rating) {
   let scaledRating = (rating || 0) * 2; // scale from 5 to 10
-  let roundedRating = Math.round(scaledRating * 10) / 10; // round to 1 decimal
-  let filledStars = Math.round(scaledRating); // still use full stars for visual
+  let roundedRating = (Math.round(scaledRating * 10) / 10).toFixed(1); // round & format to 1 decimal
+  let filledStars = Math.round(scaledRating); // round to nearest full star
   let starDisplay = 
     '<span style="color: yellow; font-size: 1rem;">' + '⭐'.repeat(filledStars) + '</span>' +
     '<span style="color: gray; font-size: 1rem;">' + '☆'.repeat(10 - filledStars) + '</span>';
 
   return `${starDisplay} <span style="font-size: 0.9rem; color: #ccc;">(${roundedRating}/10)</span>`;
 }
+
 
 
 
