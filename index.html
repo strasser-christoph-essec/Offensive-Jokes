@@ -379,11 +379,12 @@ function applyFilters() {
 }
 
 function generateStars(rating) {
-  rating = Math.round(rating);
-  let filledStars = '<span style="color: yellow; font-size: 1rem;">' + '⭐'.repeat(rating) + '</span>';
-  let emptyStars = '<span style="color: gray; font-size: 1rem;">' + '☆'.repeat(5 - rating) + '</span>';
-  return filledStars + emptyStars;
+  let scaledRating = Math.round((rating || 0) * 2); // scale from 5 to 10
+  let filledStars = '<span style="color: yellow; font-size: 1rem;">' + '⭐'.repeat(scaledRating) + '</span>';
+  let emptyStars = '<span style="color: gray; font-size: 1rem;">' + '☆'.repeat(10 - scaledRating) + '</span>';
+  return filledStars + emptyStars + ` <span style="font-size: 0.9rem; color: #ccc;">(${scaledRating}/10)</span>`;
 }
+
 
 function displayClubs(clubs) {
   const container = document.getElementById("club-container");
