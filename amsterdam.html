@@ -349,14 +349,17 @@ async function fetchClubs() {
 // }
 
 function generateStars(rating) {
-  let scaledRating = (rating || 0) * 2; // scale from 5 to 10
-  let roundedRating = (Math.round(scaledRating * 10) / 10).toFixed(1); // round & format to 1 decimal
-  let filledStars = Math.round(scaledRating); // round to nearest full star
-  let starDisplay = 
-    '<span style="color: yellow; font-size: 1rem;">' + '⭐'.repeat(filledStars) + '</span>' +
-    '<span style="color: gray; font-size: 1rem;">' + '☆'.repeat(10 - filledStars) + '</span>';
+  const value = parseFloat(rating) || 0;
+  const rounded = Math.round(value); // round to nearest full star
+  const fullStars = Math.min(5, rounded); // cap at 5
+  const emptyStars = 5 - fullStars;
 
-  return `${starDisplay} <span style="font-size: 0.9rem; color: #ccc;">(${roundedRating}/10)</span>`;
+  let stars = '<span style="color: gold; font-size: 1.2rem;">';
+  stars += '⭐'.repeat(fullStars);
+  stars += '☆'.repeat(emptyStars);
+  stars += '</span>';
+
+  return `${stars} <span style="font-size: 0.9rem; color: #ccc;">(${value.toFixed(1)}/5)</span>`;
 }
 
 
